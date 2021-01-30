@@ -1,0 +1,2 @@
+export const DEFAULT_ZOOM_LEVEL = 15;
+export const MAX_INTERACTION_ZOOM_LEVEL = 13;

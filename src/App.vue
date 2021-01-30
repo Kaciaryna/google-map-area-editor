@@ -1,18 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <div class="content">
+      <Map></Map>
+      <Legend></Legend>
+      <div v-if="!loaded" class="overlay"><h1>Loading...</h1></div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import Map from "@/components/Map.vue";
+import Legend from "@/components/Legend.vue";
+import {mapState} from "vuex";
 
 export default Vue.extend({
   name: 'App',
   components: {
-    HelloWorld
+    Map,
+    Legend
+  },
+  computed: {
+    ...mapState(['loaded'])
   }
 });
 </script>
@@ -24,6 +33,22 @@ export default Vue.extend({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  position: relative;
+}
+
+.overlay {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.content {
+  display: flex;
 }
 </style>
